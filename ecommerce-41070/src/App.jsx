@@ -1,9 +1,10 @@
 
 import Menu from './components/NavBar/NavBar'
+import ItemsListContainer from './Containers/ItemsListContainer/ItemsListContainer'
 
 import './App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import ItemsListContainer from './Containers/ItemsListContainer/ItemsListContainer'
+
 
 
 
