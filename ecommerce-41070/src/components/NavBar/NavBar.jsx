@@ -3,22 +3,31 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-import CartWidget from './CartWidget';
+import CartWidget from './CartWidget'
+import {Link} from "react-router-dom"
 
 function Menu () {
   return (
     <>
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="#home">HEALTHY-EAT</Navbar.Brand>
+          
+          <Link to="/">
+            <Navbar.Brand href="#home">HEALTHY-EAT</Navbar.Brand>
+          </Link>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Productos</Nav.Link>
-            <Nav.Link href="#pricing">Contacto</Nav.Link>
+            <Link to="/">
+              <Nav.Link href="#home">Home</Nav.Link>
+            </Link>
+            <Nav.Link href="#nosotros">Quienes somos</Nav.Link>
+            <Nav.Link href="#contacto">Contacto</Nav.Link>
           </Nav>
           <Nav>
-           <CartWidget />
+            <Link to='/cart'>
+              <CartWidget />
+            </Link>
           </Nav>
+
         </Container>
       </Navbar>
       
