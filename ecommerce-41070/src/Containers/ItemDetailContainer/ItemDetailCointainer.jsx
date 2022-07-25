@@ -20,7 +20,7 @@ const ItemDetailConteiner = () => {
     
       const task = new Promise ((res, reject) => {
         setTimeout(() => {
-          res (productos)
+          res (productos.find (item => item.id))
         }, 2000);
       })
     
