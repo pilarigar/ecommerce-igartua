@@ -1,7 +1,7 @@
 import ItemDetail from "../ItemDetail/ItemDetail"
 
 import { useEffect } from "react"
-import {useState} from "react"
+import {useState, Suspense} from "react"
 
 import {useParams} from "react-router-dom"
 
@@ -18,26 +18,27 @@ const ItemDetailConteiner = () => {
         {id: 4, name: "Aceite de oliva", price: 400, stock:40, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTExulU3N7bBD5kCnhsBE-pHTnzunIyLg1Xp0BcH-mAh8OMbBrRu1eIZvF0d24E9DBRpc4&usqp=CAU"},
       ]
     
-      const task = new Promise ((res, reject) => {
-        setTimeout(() => {
-          res (productos.find (item => item.id))
-        }, 2000);
+      const promesa = new Promise ( function (resolve, reject) {
+        resolve (productos.find (items => items.id === parseInt(itemId)));
       })
     
       useEffect (()=> {
-        task  .then (res => setItems (res))
-              .catch (error => console.log (error))
+        promesa  .then (resolve => setItems (resolve))
+                 .catch (error => console.log (error))
       }, [])
     
-      //console.log (items)
+      console.log (items)
 
     
     return (
-        <div style={{display: "flex", justifyContent: "center", margin: 20,}}>
-            <ItemDetail items={items} key={items.id}/>
-        </div>
+      <div style={{display: "flex", justifyContent: "center", margin: 20,}}>
         
+        <ItemDetail items={items} key={items.id}/>
+        
+      </div>
+      
     )
 }
 
 export default ItemDetailConteiner
+

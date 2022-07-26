@@ -20,12 +20,18 @@ function App() {
       <div className="App">
         <Menu/>
         <Routes> 
-          <Route path="/" element={<ItemsListContainer greeting={"Bienvenidxs"}/>} />
+          <Route path="/" element={
+          <Suspense fallback={<div>Cargando...</div>}>
+            <ItemsListContainer greeting={"Bienvenidxs"}/>
+          </Suspense>
+          }/>
+
           <Route path="/detalle/:itemId" element={
            <Suspense fallback={<div>Cargando...</div>}>
               <ItemDetailContainer/>
            </Suspense> 
-           }/> 
+          }/> 
+
           <Route path="/cart" element={<CartContainer/>}/>
           <Route path="*" element={<Navigate to="/" />} /> 
         </Routes>

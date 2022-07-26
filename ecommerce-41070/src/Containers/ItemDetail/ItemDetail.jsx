@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
 const ItemDetail = ({items}) => {
-    const {name, price, stock, image} = items
-    return (
-     <div>
+
+  const {name, price, stock, image} = items
+  
+  return (
+    <div>
         <Card style={{ width: '18rem' }} key={items.id}>
         <Card.Img variant="top" src= {image} />
         <Card.Body>
@@ -18,8 +20,9 @@ const ItemDetail = ({items}) => {
         <Button variant="dark">Agregar al carrito</Button>
         </Card.Body>
         </Card>
-    </div>    
-    )
-    }
+    </div>   
+  )
+  
+}
   
 export default ItemDetail
