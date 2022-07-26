@@ -21,10 +21,9 @@ function App() {
         <Menu/>
         <Routes> 
           <Route path="/" element={
-          <Suspense fallback={<div>Cargando...</div>}>
-            <ItemsListContainer greeting={"Bienvenidxs"}/>
-          </Suspense>
-          }/>
+          <ItemsListContainer greeting={"Bienvenidxs"}/>}/>
+
+          <Route index path="/categoria/:categoriaId" element={<ItemsListContainer />} />
 
           <Route path="/detalle/:itemId" element={
            <Suspense fallback={<div>Cargando...</div>}>

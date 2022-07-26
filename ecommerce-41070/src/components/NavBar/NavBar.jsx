@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 import CartWidget from './CartWidget'
-import {Link} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 
 function Menu () {
   return (
@@ -19,8 +19,8 @@ function Menu () {
             <Link to="/">
               <Nav.Link href="#home">Home</Nav.Link>
             </Link>
-            <Nav.Link href="#nosotros">Quienes somos</Nav.Link>
-            <Nav.Link href="#contacto">Contacto</Nav.Link>
+            <NavLink to="/categoria/semillas/" style={{textDecoration:"none", color: "black"}}> Semillas </NavLink>
+            <NavLink to="/categoria/frutossecos/" style={{textDecoration:"none", color: "black" }} > Frutos secos </NavLink>
           </Nav>
           <Nav>
             <Link to='/cart'>
