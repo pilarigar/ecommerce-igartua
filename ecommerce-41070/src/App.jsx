@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={
           <ItemsListContainer greeting={"Bienvenidxs"}/>}/>
 
-          <Route index path="/categoria/:categoriaId" element={<ItemsListContainer />} />
+          <Route index path="/categoria/:categoriaId" element={<ItemsListContainer/>} />
 
           <Route path="/detalle/:itemId" element={
            <Suspense fallback={<div>Cargando...</div>}>

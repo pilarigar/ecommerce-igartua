@@ -1,4 +1,4 @@
-import ItemDetail from "../ItemDetail/ItemDetail"
+import ItemDetail from "../../components/ItemDetail/ItemDetail"
 
 import { useEffect } from "react"
 import {useState, Suspense} from "react"
