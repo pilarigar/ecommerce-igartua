@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom"
+
 const InputCount= ()=> {
 
     return (
@@ -5,8 +7,9 @@ const InputCount= ()=> {
         <Link to='/cart' >
             <button  
                 onClick={()=>console.log('ir a cart') } 
-            >Ir al Cart o Terminar compra</button>
+            >Ir al carrito</button>
         </Link>
+        <br/>
         <Link to='/' >
             <button 
                 onClick={()=>console.log('ir al home') } 

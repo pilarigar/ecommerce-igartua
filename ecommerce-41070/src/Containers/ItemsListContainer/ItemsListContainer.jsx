@@ -2,7 +2,6 @@ import { useEffect } from "react"
 import {useState} from "react"
 import { useParams } from "react-router-dom"
 
-import ItemCount from "../../components/ItemCount/ItemCount"
 import Item from "./Item"
 import ItemList from "./ItemList"
 

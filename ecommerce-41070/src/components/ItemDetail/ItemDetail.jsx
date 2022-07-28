@@ -7,29 +7,18 @@ import React from 'react'
 import Button from 'react-bootstrap/Button' 
 import Card from 'react-bootstrap/Card'
 
+
 const ItemDetail = ({items}) => {
-
-  /*const [ contador , actualizarContador ] = useState(1)
-    
-  const disminuir = () => {    
-   actualizarContador(contador - 1) 
-  }  
-
-  const aumentar = () => {    
-    actualizarContador(contador + 1) 
-  } */
 
   const {name, price, stock, image} = items
 
+  const [inputType, setInputType ] = useState('boton')
+
   const onAdd = (quantity) => {
-    console.log (quantity);
+  console.log (quantity);
+  setInputType('input')
   }
 
-  const [inputType, setInputType ] = useState('button')
-
-  const handleInter=()=>{
-    setInputType('input')
-  }
 
   return (
     <div>
@@ -42,10 +31,11 @@ const ItemDetail = ({items}) => {
           <br />
           stock:{stock}
         </Card.Text>
-        {inputType === 'button' ? 
-                    <ItemCount initial={1} stock={5} onAdd={onAdd} handleInter={handleInter} />
+        {inputType === 'boton' ? 
+                    <ItemCount initial={1} stock={5} onAdd={onAdd}  />
                 : 
-                    <InputCount/>} 
+                    <InputCount/>
+                  } 
         </Card.Body>
         </Card>
     </div>   
@@ -55,4 +45,7 @@ const ItemDetail = ({items}) => {
   
 export default ItemDetail
 
-//<ItemCount initial={1} stock={5} onAdd={onAdd}/>
+/*const [inputType, setInputType ] = useState('boton')
+  const onAdd=()=>{
+    setInputType('boton')
+  }*/
