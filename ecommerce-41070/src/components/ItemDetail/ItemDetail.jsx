@@ -1,16 +1,15 @@
 import {useState} from "react"
 
 import ItemCount from "../ItemCount/ItemCount"
+import InputCount from "../InputCount/InputCount"
 
 import React from 'react'
 import Button from 'react-bootstrap/Button' 
 import Card from 'react-bootstrap/Card'
 
-
-
 const ItemDetail = ({items}) => {
 
-  const [ contador , actualizarContador ] = useState(1)
+  /*const [ contador , actualizarContador ] = useState(1)
     
   const disminuir = () => {    
    actualizarContador(contador - 1) 
@@ -18,16 +17,20 @@ const ItemDetail = ({items}) => {
 
   const aumentar = () => {    
     actualizarContador(contador + 1) 
-  }  
-    
-  console.log('item List Container rendered')
+  } */
 
   const {name, price, stock, image} = items
 
   const onAdd = (quantity) => {
     console.log (quantity);
   }
-  
+
+  const [inputType, setInputType ] = useState('button')
+
+  const handleInter=()=>{
+    setInputType('input')
+  }
+
   return (
     <div>
         <Card style={{ width: '18rem' }} key={items.id}>
@@ -39,7 +42,10 @@ const ItemDetail = ({items}) => {
           <br />
           stock:{stock}
         </Card.Text>
-        <ItemCount initial={1} stock={5} onAdd={onAdd}/>
+        {inputType === 'button' ? 
+                    <ItemCount initial={1} stock={5} onAdd={onAdd} handleInter={handleInter} />
+                : 
+                    <InputCount/>} 
         </Card.Body>
         </Card>
     </div>   
@@ -48,3 +54,5 @@ const ItemDetail = ({items}) => {
 }
   
 export default ItemDetail
+
+//<ItemCount initial={1} stock={5} onAdd={onAdd}/>
