@@ -5,6 +5,8 @@ import Menu from './components/NavBar/NavBar'
 import ItemsListContainer from './Containers/ItemsListContainer/ItemsListContainer'
 //import ItemDetailConteiner from './Containers/ItemDetailContainer/ItemDetailCointainer'
 import CartContainer from './Containers/CartContainer/CartContainer'
+import CartContextProvider from './Context/CartContext'
+
 
 import './App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -17,6 +19,7 @@ function App() {
   return (
 
     <BrowserRouter>
+      <CartContextProvider>
       <div className="App">
         <Menu/>
         <Routes> 
@@ -35,6 +38,8 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} /> 
         </Routes>
       </div>
+
+      </CartContextProvider>
       
     </BrowserRouter>
   )

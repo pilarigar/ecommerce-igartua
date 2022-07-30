@@ -3,15 +3,14 @@ import {useState} from "react"
 
 import {Link} from "react-router-dom"
 
-
-const ButtonCount= ({handleInter})=> {
+/*const ButtonCount= ({handleInter})=> {
   
   return <button 
-              className="btn btn-outline-success" 
-              onClick={handleInter}
-          >Agregar Al carrito</button>
+    className="btn btn-outline-success" 
+    onClick={handleInter}
+  >Agregar Al carrito</button>
 
-}
+}*/
 
 const ItemCount = ({initial, stock, onAdd}) => {
    
@@ -39,6 +38,6 @@ const ItemCount = ({initial, stock, onAdd}) => {
   
 }
 
-export default ItemCount
+export default ItemCount 
 
 //handleInter={handleInter}
