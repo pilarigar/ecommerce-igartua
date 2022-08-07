@@ -1,7 +1,7 @@
 import { useCartContex } from "../../Context/CartContext"
 
 const CartContainer = () => {
-    const {cartList, vaciarCarrito} = useCartContex ()
+    const {cartList, vaciarCarrito, eliminarProducto, Total} = useCartContex ()
     
     
     
@@ -13,6 +13,7 @@ const CartContainer = () => {
               <th scope="col">Item</th>
               <th scope="col">Precio</th>
               <th scope="col">Cantidad</th>
+              <th scope="col">Eliminar <br /> producto</th>
             
             </tr>
             {cartList.map(item => 
@@ -22,7 +23,7 @@ const CartContainer = () => {
               <td style={{fontWeight:"bold"}}>{item.name} </td>
               <td style={{fontWeight:"bold"}} >${item.price}</td>  
               <td style={{fontWeight:"bold"}}>{item.cantidad}</td> 
-              <td><button className="btn btn-dark" onClick={() => eliminarProducto(item.id)}> X </button></td> 
+              <td><button style={{color:"black"}}className="btn btn-dark" onClick={() => eliminarProducto (item.id)}> X </button></td> 
               </tr>
               </>
             )}

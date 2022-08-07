@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import { useState } from "react";
-import { createContext } from "react";
+import { useContext, useState, createContext } from "react";
 
 const CartContex =  createContext ([])
 
@@ -11,6 +9,7 @@ const CartContexProvider = ({children}) => {
     // poner todos los estados y funciones
    const [cartList, setCartList] = useState ([])
 
+   //Agregar producto al carrito
    const agregarAlCarrito = (objItem) => {
     setCartList ([
         ...cartList,
@@ -18,10 +17,34 @@ const CartContexProvider = ({children}) => {
     ])
    }
 
+   //Boton Vaciar carrito
+    const vaciarCarrito = () =>{
+      setCartList([])
+    } 
+
+    // Precio total
+    const Total = ()=>{
+        return cartList.reduce((acumPrecio, prodItem) => acumPrecio = acumPrecio + (prodItem.price * prodItem.cantidad) , 0) 
+    }
+
+    const cantidadTotal = ()=>{
+        return cartList.reduce((contador, produItem) => contador += produItem.cantidad , 0) 
+    }
+
+    // eliminar producto 
+    const eliminarProducto = (id) => {
+        setCartList( cartList.filter(eItem => eItem.id !== id ) )
+    }
+
+
     return (
         <CartContex.Provider value={{
             cartList,
-            agregarAlCarrito
+            agregarAlCarrito,
+            vaciarCarrito,
+            Total,
+            cantidadTotal,
+            eliminarProducto
         }}>
             {children}
         </CartContex.Provider>
