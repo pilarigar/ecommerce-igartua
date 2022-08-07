@@ -5,12 +5,13 @@ const productos = [
     {id: 4, name: "Aceite de oliva", price: 400, stock:40, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTExulU3N7bBD5kCnhsBE-pHTnzunIyLg1Xp0BcH-mAh8OMbBrRu1eIZvF0d24E9DBRpc4&usqp=CAU"},
 ]
 
-export const getFetch = (id) => {
+
+export const getFetch = (itemId) => {
     
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
-            if (id) {
-                resolve(productos.find( items => items.id === id ) )
+            if (itemId) {
+                resolve(productos.find( items => items.id === itemId ) )
             } else {
                 resolve(productos)                
             }

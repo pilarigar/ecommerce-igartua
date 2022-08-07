@@ -2,13 +2,34 @@ import { useCartContex } from "../../Context/CartContext"
 
 const CartContainer = () => {
     const {cartList, vaciarCarrito} = useCartContex ()
+    
+    
+    
     return (
-      <div>
-        {cartList.map (items => <li>
-          {items.name} {items.price} {items.cantidad}
-        </li>)}
-        <button onClick={vaciarCarrito}>Vaciar carrito</button>
-      </div>
+      <div className="container">
+        <table className="table table-bordered">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Item</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+            
+            </tr>
+            {cartList.map(item => 
+              <> 
+              <tr>
+              <th><img src={item.image} alt="image"/></th>                           
+              <td style={{fontWeight:"bold"}}>{item.name} </td>
+              <td style={{fontWeight:"bold"}} >${item.price}</td>  
+              <td style={{fontWeight:"bold"}}>{item.cantidad}</td> 
+              <td><button className="btn btn-dark" onClick={() => eliminarProducto(item.id)}> X </button></td> 
+              </tr>
+              </>
+            )}
+          <tr><button style={{margin:"10px"}} className="btn btn-dark" onClick={vaciarCarrito}>Vaciar carrito</button></tr>
+          
+        </table> 
+     </div>
     )
   }
   

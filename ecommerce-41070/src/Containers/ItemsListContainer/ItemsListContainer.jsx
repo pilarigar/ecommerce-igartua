@@ -8,38 +8,34 @@ import { getFetch } from "../../helpers/productos"
 import Item from "./Item"
 import ItemList from "./ItemList"
 
+import { collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, where } from 'firebase/firestore'
+
 const ItemListContainer = ({ greeting }) => {
    
   const [items, setItems] = useState ([])
   const [loading, setLoading] = useState(true)
-  const {categoriaId} =useParams ()
+  const {categoriaId} = useParams ()
 
-  useEffect (()=> {
-    if (categoriaId) {
-      getFetch ()
-      .then (res => setItems (res.filter(items => items.categoria === categoriaId)))
-      .catch( error => console.log(error)) 
-      .finally(() => setLoading(false))             
-    } else {
-      getFetch ()  
-        .then (res => setItems (res))
-        .catch (error => console.log (error))
-        .finally(() => setLoading(false))  
-    }      
-  }, [categoriaId])
+  useEffect(() => {
+    const db = getFirestore()
+    const queryColleccion = collection(db, 'productos')
+    getDocs(queryColleccion)
+    .then(resp => setItems(resp.docs.map(producto => ({ id: producto.id, ...producto.data()}) )))
+    .catch(error => console.log(error))
+    .finally(() => setLoading(false))
+  },[])
 
   console.log (items)
-
-  const onAdd = (quantity) => {
-    console.log (quantity);
-  }
     
   return (
     loading ?
-    <h1>Cargando</h1>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     :
     <ItemList items={items}/>
-    //{ greeting }<br></br>
     //<ItemCount initial={1} stock={5} onAdd={onAdd}/>
    
   )
@@ -47,7 +43,3 @@ const ItemListContainer = ({ greeting }) => {
   
 export default ItemListContainer
   
-  
-//{ contador } <br />
-//<button onClick = {disminuir}>-</button>
-//<button onClick={aumentar}>+</button>

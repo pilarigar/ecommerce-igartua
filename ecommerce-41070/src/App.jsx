@@ -24,12 +24,13 @@ function App() {
         <Menu/>
         <Routes> 
           <Route path="/" element={
-          <ItemsListContainer greeting={"Bienvenidxs"}/>}/>
+            <ItemsListContainer/>
+          }/>
 
           <Route index path="/categoria/:categoriaId" element={<ItemsListContainer/>} />
 
           <Route path="/detalle/:itemId" element={
-           <Suspense fallback={<div>Cargando...</div>}>
+           <Suspense>
               <ItemDetailContainer/>
            </Suspense> 
           }/> 

@@ -6,14 +6,14 @@ import { useCartContex } from "../../Context/CartContext"
 
 import Card from 'react-bootstrap/Card'
 
-const ItemDetail = (items = {}) => {
+const ItemDetail = ({item = {}}) => {
   const {agregarAlCarrito, cartList}= useCartContex ()
 
   const [inputType, setInputType ] = useState('boton')
 
   const onAdd = (quantity) => {
   console.log (quantity);
-  agregarAlCarrito ({...items, cantidad: quantity});
+  agregarAlCarrito ({...item, cantidad: quantity});
   setInputType('input');
   }
 
@@ -22,13 +22,13 @@ const ItemDetail = (items = {}) => {
   return (
     <div>
         <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src= {items.image} />
+        <Card.Img variant="top" src= {item.image} />
         <Card.Body>
-        <Card.Title>{items.name}</Card.Title>
+        <Card.Title>{item.name}</Card.Title>
         <Card.Text>
-          ${items.price}
+          ${item.price}
           <br />
-          stock:{items.stock}
+          stock:{item.stock}
         </Card.Text>
         {inputType === 'boton' ? 
                     <ItemCount initial={1} stock={5} onAdd={onAdd}  />

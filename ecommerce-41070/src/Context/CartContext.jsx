@@ -11,10 +11,10 @@ const CartContexProvider = ({children}) => {
     // poner todos los estados y funciones
    const [cartList, setCartList] = useState ([])
 
-   const agregarAlCarrito = (objProducto) => {
+   const agregarAlCarrito = (objItem) => {
     setCartList ([
         ...cartList,
-        objProducto
+        objItem
     ])
    }
 
