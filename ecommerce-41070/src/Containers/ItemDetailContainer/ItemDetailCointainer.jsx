@@ -1,5 +1,4 @@
 import ItemDetail from "../../components/ItemDetail/ItemDetail"
-import { getFetch } from "../../helpers/productos"
 
 import {useState, useEffect} from "react"
 import { doc, getDoc, getFirestore } from "firebase/firestore"

@@ -27,9 +27,9 @@ function App() {
             <ItemsListContainer/>
           }/>
 
-          <Route index path="/categoria/:categoriaId" element={<ItemsListContainer/>} />
+          <Route index path="/category/:categoryId" element={<ItemsListContainer/>} />
 
-          <Route path="/detalle/:itemId" element={
+          <Route path="/detail/:itemId" element={
            <Suspense>
               <ItemDetailContainer/>
            </Suspense> 

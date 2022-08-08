@@ -19,8 +19,8 @@ function Menu () {
             <Link to="/">
               <Nav.Link href="#home">Home</Nav.Link>
             </Link>
-            <NavLink to="/categoria/semillas/" style={{textDecoration:"none", color: "black"}}> Semillas </NavLink>
-            <NavLink to="/categoria/frutossecos/" style={{textDecoration:"none", color: "black" }} > Frutos secos </NavLink>
+            <NavLink to="/category/semillas/" style={{textDecoration:"none", color: "black"}}> Semillas </NavLink>
+            <NavLink to="/category/frutossecos/" style={{textDecoration:"none", color: "black" }} > Frutos secos </NavLink>
           </Nav>
           <Nav>
             <Link to='/cart'>

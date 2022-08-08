@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import {Link} from "react-router-dom"
 
 const Item = ({item}) => {
-  const {name, price, stock, image, categoria} = item 
+  const {name, price, stock, image, category} = item 
 
   return (
     <Card style={{ width: '18rem' }} key={item.id}>
@@ -17,7 +17,7 @@ const Item = ({item}) => {
           <br />
           stock:{stock}
         </Card.Text>
-        <Link to={`/detalle/${item.id}`}>
+        <Link to={`/detail/${item.id}`}>
           <Button variant="dark">Ver detalles</Button>
         </Link>
       </Card.Body>
