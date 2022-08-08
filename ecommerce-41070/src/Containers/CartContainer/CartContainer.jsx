@@ -1,13 +1,13 @@
-import { addDoc, collection, doc, documentId, getDocs, getFirestore, query, updateDoc, where, writeBatch } from "firebase/firestore"
+import { addDoc, collection, documentId, getDocs, getFirestore, query, where, writeBatch } from "firebase/firestore"
 import { useCartContex } from "../../Context/CartContext"
 
 const CartContainer = () => {
-  const {cartList, vaciarCarrito, eliminarProducto, Total} = useCartContex ()
+  const {cartList, EmptyCart, DeleteItem, Total} = useCartContex ()
     
-  const generarOrden = async () => {
+  const generateOrder = async () => {
   // genrando el objeto
     const order = {}
-    order.buyer = {name: 'pilar', phone: '123456789', email: 'piligartua@gmail.com'}
+    order.buyer = {name: 'pilar', phone:'123456789', email: 'piligartua@gmail.com'}
 
     order.items = cartList.map(product => {
       return {
@@ -22,27 +22,26 @@ const CartContainer = () => {
     const db = getFirestore()
     const queryOrders = collection(db, 'orders')
     addDoc(queryOrders, order)
-    //.then(resp => console.log(resp.id))
     .then (resp => Swal.fire('tu ID de orden es:' + "" + (resp.id)))
     .catch(err => console.log(err))
   
     // actualizar el stock
     const queryCollectionStock = collection(db, 'items')
 
-    const queryActulizarStock = query(
-      queryCollectionStock, //                   
+    const queryUpdateStock = query(
+      queryCollectionStock,                 
       where( documentId() , 'in', cartList.map(prod => prod.id) )      
     )
 
     const batch = writeBatch(db)
 
-    await getDocs(queryActulizarStock)
+    await getDocs(queryUpdateStock)
     .then(resp => console.log(resp))
     .then(resp => resp.docs.forEach(res => batch.update(res.ref, {
-          stock: res.data().stock - cartList.find(item => item.id === res.id).cantidad
+          stock: res.data().stock - cartList.find(item => item.id === res.id).quantity
     })))
     .catch(err => console.log(err))
-    .finally(()=> vaciarCarrito())
+    .finally(()=> EmptyCart())
 
     batch.commit()
 
@@ -70,7 +69,7 @@ const CartContainer = () => {
                 <td style={{fontWeight:"bold"}}>{item.name} </td>
                 <td style={{fontWeight:"bold"}} >${item.price}</td>  
                 <td style={{fontWeight:"bold"}}>{item.cantidad}</td> 
-                <td><button style={{color:"black"}}className="btn btn-dark" onClick={() => eliminarProducto (item.id)}> X </button></td> 
+                <td><button style={{color:"black"}}className="btn btn-dark" onClick={() => DeleteItem (item.id)}> X </button></td> 
               </tr>
             </>
           )} 
@@ -84,7 +83,7 @@ const CartContainer = () => {
           
         </tbody>
       </table> 
-      <button style={{margin:"10px"}} className="btn btn-dark" onClick={vaciarCarrito}>Vaciar carrito</button>
+      <button style={{margin:"10px"}} className="btn btn-dark" onClick={EmptyCart}>Vaciar carrito</button>
 
       <form className="border border-2 border-dark rounded shadow-lg w-75 p-3" style={{margin: 'auto'}}  >
         <div className="form-group">
@@ -123,7 +122,7 @@ const CartContainer = () => {
             placeholder="Repita Email" 
           />
         </div>
-        <button id="orderbtn" type="button" className="btn btn-dark mt-2" onClick={generarOrden}>Generar orden</button>
+        <button id="orderbtn" type="button" className="btn btn-dark mt-2" onClick={generateOrder}>Generar orden</button>
       </form>
     </div>
      

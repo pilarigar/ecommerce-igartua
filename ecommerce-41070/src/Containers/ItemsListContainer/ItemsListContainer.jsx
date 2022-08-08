@@ -3,43 +3,33 @@ import {useState} from "react"
 
 import { useParams } from "react-router-dom"
 
-import { getFetch } from "../../helpers/productos"
-
-import Item from "./Item"
 import ItemList from "./ItemList"
 
-import { collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, where } from 'firebase/firestore'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 const ItemListContainer = ({ greeting }) => {
    
   const [items, setItems] = useState ([])
   const [loading, setLoading] = useState(true)
   const {categoryId} = useParams ()
+  
 
-  useEffect(() => {
-    if (categoryId) {
-      const db = getFirestore()
-        const queryColleccion = collection(db, 'productos')
-        const queryColleccionFiltrado = query(
-        queryColleccion, 
-        where('category','==', categoryId)
-        )
-        getDocs(queryColleccionFiltrado)
-        .then(resp => setItems(resp.docs.map(producto => ({ id: producto.id, ...producto.data()}) )))
-        .catch(err => console.log(err))
-        .finally(() => setLoading(false))
-
-    } else {
+  const getApiFirestore = () => {
     const db = getFirestore()
-    const queryColleccion = collection(db, 'productos')
-    getDocs(queryColleccion)
+      const queryCollection = collection(db, 'productos')
+      const queryCollectionWhere = categoryId ? //para no repetir código reeplazo el if/else
+                                  query (queryCollection, where('category','==', categoryId))
+                                  :
+                                  queryCollection
+    getDocs(queryCollectionWhere)
     .then(resp => setItems(resp.docs.map(producto => ({ id: producto.id, ...producto.data()}) )))
     .catch(error => console.log(error))
     .finally(() => setLoading(false))
-    }
-  },[categoryId])
+  }
 
-  console.log (items)
+  useEffect(() => {
+    getApiFirestore ()
+  },[categoryId])
     
   return (
     loading ?
@@ -50,8 +40,6 @@ const ItemListContainer = ({ greeting }) => {
     </div>
     :
     <ItemList items={items}/>
-    //<ItemCount initial={1} stock={5} onAdd={onAdd}/>
-   
   )
 }
   

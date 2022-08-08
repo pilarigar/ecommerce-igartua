@@ -1,27 +1,16 @@
 
 import {useState} from "react"
 
-import {Link} from "react-router-dom"
-
-/*const ButtonCount= ({handleInter})=> {
-  
-  return <button 
-    className="btn btn-outline-success" 
-    onClick={handleInter}
-  >Agregar Al carrito</button>
-
-}*/
-
 const ItemCount = ({initial, stock, onAdd}) => {
    
-  const [ count , actualizarContador ] = useState(initial)
+  const [ count , updateCount ] = useState(initial)
     
   const decrease = () => {    
-  actualizarContador(count - 1) 
+    updateCount(count - 1) 
   }  
 
   const increase = () => {    
-  actualizarContador(count + 1) 
+    updateCount(count + 1) 
   }  
 
   return (
@@ -39,5 +28,3 @@ const ItemCount = ({initial, stock, onAdd}) => {
 }
 
 export default ItemCount 
-
-//handleInter={handleInter}

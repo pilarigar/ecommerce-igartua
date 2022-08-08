@@ -7,13 +7,13 @@ import { useCartContex } from "../../Context/CartContext"
 import Card from 'react-bootstrap/Card'
 
 const ItemDetail = ({item = {}}) => {
-  const {agregarAlCarrito, cartList}= useCartContex ()
+  const {AddToCart, cartList}= useCartContex ()
 
-  const [inputType, setInputType ] = useState('boton')
+  const [inputType, setInputType ] = useState('button')
 
   const onAdd = (quantity) => {
   console.log (quantity);
-  agregarAlCarrito ({...item, cantidad: quantity});
+  AddToCart ({...item, quantity: quantity});
   setInputType('input');
   }
 
@@ -30,7 +30,7 @@ const ItemDetail = ({item = {}}) => {
           <br />
           stock:{item.stock}
         </Card.Text>
-        {inputType === 'boton' ? 
+        {inputType === 'button' ? 
                     <ItemCount initial={1} stock={5} onAdd={onAdd}  />
                 : 
                     <InputCount/>
@@ -43,8 +43,3 @@ const ItemDetail = ({item = {}}) => {
 }
   
 export default ItemDetail
-
-/*const [inputType, setInputType ] = useState('boton')
-  const onAdd=()=>{
-    setInputType('boton')
-  }*/

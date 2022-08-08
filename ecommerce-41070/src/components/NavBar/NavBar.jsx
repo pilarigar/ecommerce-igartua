@@ -12,15 +12,13 @@ function Menu () {
       <Navbar bg="light" variant="light">
         <Container>
           
-          <Link to="/">
-            <Navbar.Brand href="#home">HEALTHY-EAT</Navbar.Brand>
+          <Link to="/" style={{textDecoration:"none", color: "black", fontWeight: "bold",}}>
+            <Navbar.Brand>HEALTHY-EAT</Navbar.Brand>
           </Link>
           <Nav className="me-auto">
-            <Link to="/">
-              <Nav.Link href="#home">Home</Nav.Link>
-            </Link>
-            <NavLink to="/category/semillas/" style={{textDecoration:"none", color: "black"}}> Semillas </NavLink>
-            <NavLink to="/category/frutossecos/" style={{textDecoration:"none", color: "black" }} > Frutos secos </NavLink>
+            <NavLink to="/" href= "#home" style={{textDecoration:"none", color: "black", fontWeight: "bold", margin: "5px"}}>Home</NavLink>
+            <NavLink to="/category/semillas/" style={{textDecoration:"none", color: "black", margin: "5px"}}> Semillas </NavLink>
+            <NavLink to="/category/frutossecos/" style={{textDecoration:"none", color: "black", margin: "5px"}} > Frutos secos </NavLink>
           </Nav>
           <Nav>
             <Link to='/cart'>
