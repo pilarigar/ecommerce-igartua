@@ -3,9 +3,9 @@ import { useCartContex } from "../../Context/CartContext"
 
 const CartContainer = () => {
   const {cartList, EmptyCart, DeleteItem, Total} = useCartContex ()
-    
+  
   const generateOrder = async () => {
-  // genrando el objeto
+  // generando la orden
     const order = {}
     order.buyer = {name: 'pilar', phone:'123456789', email: 'piligartua@gmail.com'}
 
