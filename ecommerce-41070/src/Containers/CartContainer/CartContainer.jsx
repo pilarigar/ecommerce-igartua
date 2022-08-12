@@ -68,7 +68,7 @@ const CartContainer = () => {
                 <th><img src={item.image} alt="image"/></th>                           
                 <td style={{fontWeight:"bold"}}>{item.name} </td>
                 <td style={{fontWeight:"bold"}} >${item.price}</td>  
-                <td style={{fontWeight:"bold"}}>{item.cantidad}</td> 
+                <td style={{fontWeight:"bold"}}>{item.quantity}</td> 
                 <td><button style={{color:"black"}}className="btn btn-dark" onClick={() => DeleteItem (item.id)}> X </button></td> 
               </tr>
             </>

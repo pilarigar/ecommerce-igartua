@@ -6,7 +6,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import CartWidget from './CartWidget'
 import {Link, NavLink} from "react-router-dom"
 
+import { useCartContex } from "../../Context/CartContext"
+
 function Menu () {
+  const {TotalQuantity} = useCartContex ()
+
   return (
     <>
       <Navbar bg="light" variant="light">
@@ -21,11 +25,10 @@ function Menu () {
             <NavLink to="/category/frutossecos/" style={{textDecoration:"none", color: "black", margin: "5px"}} > Frutos secos </NavLink>
           </Nav>
           <Nav>
-            <Link to='/cart'>
-              <CartWidget />
+            <Link to='/cart' style={{textDecoration:"none", color: "black", fontWeight: "bold",}}>
+              <CartWidget/> {TotalQuantity()}
             </Link>
           </Nav>
-
         </Container>
       </Navbar>
       
