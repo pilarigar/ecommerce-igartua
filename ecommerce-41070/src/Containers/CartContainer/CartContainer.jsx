@@ -2,7 +2,7 @@ import { addDoc, collection, documentId, getDocs, getFirestore, query, where, wr
 import { useCartContex } from "../../Context/CartContext"
 
 const CartContainer = () => {
-  const {cartList, EmptyCart, DeleteItem, Total} = useCartContex ()
+  const {cartList, EmptyCart, DeleteItem, Total, TotalQuantity} = useCartContex ()
   
   const generateOrder = async () => {
   // generando la orden
@@ -55,9 +55,9 @@ const CartContainer = () => {
         <thead>
           <tr>
           <th scope="col"></th>
+          <th scope="col">Cantidad</th>
           <th scope="col">Item</th>
           <th scope="col">Precio</th>
-          <th scope="col">Cantidad</th>
           <th scope="col">Eliminar <br/> producto</th>
           </tr>
         </thead>
@@ -65,20 +65,19 @@ const CartContainer = () => {
           {cartList.map(item => 
             <> 
               <tr>
-                <th><img src={item.image} alt="image"/></th>                           
+                <th><img src={item.image} alt="image"/></th> 
+                <td style={{fontWeight:"bold"}}>{item.quantity}</td>                          
                 <td style={{fontWeight:"bold"}}>{item.name} </td>
                 <td style={{fontWeight:"bold"}} >${item.price}</td>  
-                <td style={{fontWeight:"bold"}}>{item.quantity}</td> 
                 <td><button style={{color:"black"}}className="btn btn-dark" onClick={() => DeleteItem (item.id)}> X </button></td> 
               </tr>
             </>
           )} 
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td style={{fontWeight:"bold"}}>Precio final de compra</td>
-            <td style={{fontWeight:"bold"}}>${Total()}</td>
+            <td style={{color:"white", fontWeight:"bold", backgroundColor:"#17202A"}}>Total de productos</td>
+            <td style={{color:"white", fontWeight:"bold", backgroundColor:"#17202A"}}>{TotalQuantity()}</td>
+            <td style={{color:"white", fontWeight:"bold", backgroundColor:"#17202A"}}>Precio final de compra</td>
+            <td style={{color:"white", fontWeight:"bold", backgroundColor:"#17202A"}}>${Total()}</td>
           </tr>
           
         </tbody>
